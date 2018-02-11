@@ -1,9 +1,9 @@
 package entry;
 
 public class Entry {
-    String name;
-    String quantity;
-    String notes;
+    public String name;
+    public String quantity;
+    public String notes;
     
     public Entry(String name, String quantity, String notes) {
         this.name = name;
