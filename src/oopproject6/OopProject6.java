@@ -22,7 +22,7 @@ public class OopProject6 {
         num_entries = getEntryCount(entryList);
 
         System.out.println("Codes are entered as 1 to 8 characters. ");
-        System.out.println("Use \"e\" for enter, \"f\" for find, \"l\" for list, \"q\" for quit. ");
+        System.out.println("Use \"e\" for enter, \"f\" for find, \"d\" for delete, \"l\" for list, \"q\" for quit. ");
         System.out.println();
         command = getCommand();
         commandCode = command.charAt(0) + "";
@@ -32,6 +32,7 @@ public class OopProject6 {
                 case "e":
                     getEntries(command, entryList);
                     break;
+                    
                 case "f":
                     int index = getIndex(entryList, command);
                     if (index >= 0) {
@@ -42,6 +43,7 @@ public class OopProject6 {
                         System.out.println("Entry not found");
                     }
                     break;
+                    
                 case "d":
                     index = getIndex(entryList, command);
                     if (index >= 0) {
@@ -52,8 +54,13 @@ public class OopProject6 {
                         num_entries = num_entries - 1;
                         storeInventory("inventory.txt", temp);
                         entryList = readInventory("inventory.txt", entryList);
-                        break;
                     }
+                    break;
+                    
+                case "l":
+                    listAllEntries(entryList);
+                    break;
+                    
                 default:
                     System.err.println("Not a valid input");
             }
@@ -122,6 +129,7 @@ public class OopProject6 {
             System.err.println("Please enter a valid command");
         }
     }
+
     private static int getIndex(Entry[] entryList, String command) {
         String productName = command.substring(2).trim();
         if (ArrayUtils.isEmpty(entryList)) {
@@ -146,11 +154,23 @@ public class OopProject6 {
         command = stdin.nextLine().toLowerCase();
         command = command.trim();
         while (command.length() > 8 || command.isEmpty()) {
-            System.out.println("Sorry, command must not exceed 8 characters.");
+            if (command.isEmpty()) {
+                System.err.println("Sorry, product name is empty.");
+            } else {
+                System.err.println("Sorry, command must not exceed 8 characters.");
+            }
             System.out.print("Enter command :");
             command = stdin.nextLine();
             command = command.trim();
         }
         return command;
+    }
+
+    private static void listAllEntries(Entry[] entryList) {
+        for (int i = 0; i < num_entries; i++) {
+            System.out.println(entryList[i].name);
+            System.out.println(entryList[i].quantity);
+            System.out.println(entryList[i].notes);
+        }
     }
 }
