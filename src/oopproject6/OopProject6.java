@@ -167,10 +167,13 @@ public class OopProject6 {
     }
 
     private static void listAllEntries(Entry[] entryList) {
-        for (int i = 0; i < num_entries; i++) {
-            System.out.println(entryList[i].name);
-            System.out.println(entryList[i].quantity);
-            System.out.println(entryList[i].notes);
+        for(Entry entry: entryList) {
+            if(entry != null) {
+                System.out.println(entry.name);
+                System.out.println(entry.quantity);
+                System.out.println(entry.notes);    
+            } else 
+                break;
         }
     }
 }
