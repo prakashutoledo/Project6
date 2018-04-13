@@ -172,8 +172,9 @@ public class OopProject6 {
                 System.out.println(entry.name);
                 System.out.println(entry.quantity);
                 System.out.println(entry.notes);    
-            } else 
+            } else {
                 break;
+            }
         }
     }
 }
